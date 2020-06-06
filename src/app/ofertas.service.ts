@@ -1,6 +1,4 @@
-import { Oferta } from './shared/ofertas.model'
-
-
+import { Oferta } from './shared/oferta.model'
 
 export class OfertasService {
 
@@ -34,7 +32,7 @@ export class OfertasService {
                 {url: "/assets/ofertas/2/img3.jpg"},
                 {url: "/assets/ofertas/2/img4.jpg"}
             ]
-        
+
         },
         {
             id: 4,
@@ -54,8 +52,24 @@ export class OfertasService {
             ]
         }
     ]
-    
+
     public getOfertas(): Array<Oferta> {
-        return this.ofertas
+        return this.ofertas;
+    }
+
+
+    public getOfertas2(): Promise<Oferta[]> {
+        // tslint:disable-next-line: no-shadowed-variable
+        return new Promise((resolve, rejects) => {
+            // retornaria algum tipo de procedimentos, que ao finalizar, chama a função resolve
+            const deuCerto = true;
+            if ( deuCerto){
+                setTimeout(() => resolve ( this.ofertas ),3000);
+            }else{
+                rejects ({codigo_erro: 404, mensagem_erro: 'Servidor não encontrado zzz'});
+            }
+
+            resolve( this.ofertas);
+        });
     }
 }
